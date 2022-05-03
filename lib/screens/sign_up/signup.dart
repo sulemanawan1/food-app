@@ -1,4 +1,8 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:foodapp/screens/sign_in/signin.dart';
 
 bool _isHidden = true;
 
@@ -12,8 +16,7 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text(
             'Sign Up',
@@ -194,6 +197,10 @@ class _SignupState extends State<Signup> {
                     ),
                     GestureDetector(
                         onTap: () {
+
+                          Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => SignIn()),
+                          );
                           print(" Sign In");
                         },
                         child: Text(
@@ -225,7 +232,10 @@ class _SignupState extends State<Signup> {
                     minimumSize: const Size(400, 40),
                     maximumSize: const Size(400, 40),
                   ),
-                  icon: Icon(Icons.facebook), //icon data for elevated button
+    icon: FaIcon(
+    FontAwesomeIcons.facebook
+
+    ),//icon data for elevated button
                   label: Text("Connect with Facebook "),
                   onPressed: () {},
                 ),
@@ -236,7 +246,10 @@ class _SignupState extends State<Signup> {
                     minimumSize: const Size(400, 40),
                     maximumSize: const Size(400, 40),
                   ),
-                  icon: Icon(Icons.facebook), //icon data for elevated button
+                  icon:   FaIcon(
+    FontAwesomeIcons.google
+
+    ),//icon data for elevated button
                   label: Text("Connect with Google "),
                   onPressed: () {},
                 ),
@@ -244,7 +257,7 @@ class _SignupState extends State<Signup> {
             ],
           ),
         ),
-      ),
+
     );
   }
 

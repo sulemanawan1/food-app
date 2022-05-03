@@ -16,8 +16,8 @@ class _DelievryToState extends State<DelievryTo> {
   final List<String> imagesList = [
     "https://blogs.biomedcentral.com/on-medicine/wp-content/uploads/sites/6/2019/09/iStock-1131794876.t5d482e40.m800.xtDADj9SvTVFjzuNeGuNUUGY4tm5d6UGU5tkKM0s3iPk-620x342.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg",
+    "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/2KL6JYQYH4I6REYMIWBYVUGXPI.jpg&w=916",
+    "https://pizzapalaceburwell.com/wp-content/uploads/2021/11/Food.jpg",
   ];
   final List<String> titles = [
     ' Coffee ',
@@ -46,80 +46,27 @@ class _DelievryToState extends State<DelievryTo> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CarouselSlider(
-                options: CarouselOptions(
-                  autoPlay: true,
-                  // enlargeCenterPage: true,
-                  //scrollDirection: Axis.vertical,
-                  onPageChanged: (index, reason) {
-                    setState(
-                      () {
-                        _currentIndex = index;
-                      },
-                    );
-                  },
-                ),
-                items: imagesList
-                    .map(
-                      (item) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Card(
-                          margin: EdgeInsets.only(
-                            top: 10.0,
-                            bottom: 10.0,
+                options: CarouselOptions(height: 200.0,autoPlay: true),
+                items: imagesList.map((i) {
+
+                  int ind=imagesList.indexOf(i);
+                print(ind);
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.symmetric(horizontal: 5.0),
+                          decoration: BoxDecoration(
+                              color: Colors.amber
                           ),
-                          elevation: 6.0,
-                          shadowColor: Colors.redAccent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                            child: Stack(
-                              children: <Widget>[
-                                Image.network(
-                                  item,
-                                  fit: BoxFit.cover,
-                                  width: double.infinity,
-                                ),
-                                Center(
-                                  child: Text(
-                                    '${titles[_currentIndex]}',
-                                    style: TextStyle(
-                                      fontSize: 24.0,
-                                      fontWeight: FontWeight.bold,
-                                      backgroundColor: Colors.black45,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: imagesList.map((urlOfItem) {
-                                    int index = imagesList.indexOf(urlOfItem);
-                                    return Container(
-                                      width: 10.0,
-                                      height: 10.0,
-                                      margin: EdgeInsets.symmetric(
-                                          vertical: 10.0, horizontal: 2.0),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: _currentIndex == index
-                                            ? Color.fromRGBO(0, 0, 0, 0.8)
-                                            : Color.fromRGBO(0, 0, 0, 0.3),
-                                      ),
-                                    );
-                                  }).toList(),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                    .toList(),
-              ),
+                          child: Image.network("$i")
+                      );
+                    },
+                  );
+                }).toList(),
+              )
+             ,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

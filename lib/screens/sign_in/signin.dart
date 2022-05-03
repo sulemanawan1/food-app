@@ -2,6 +2,10 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:foodapp/screens/delievry_to/delievry_to.dart';
+import 'package:foodapp/screens/forgot_password/forgot_password.dart';
+import 'package:foodapp/screens/sign_up/signup.dart';
 bool _isHidden = true;
 
 class SignIn extends StatefulWidget {
@@ -14,8 +18,8 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return
+     Scaffold(
         appBar: AppBar(
           title: Text(
             'Sign In',
@@ -115,7 +119,16 @@ class _SignInState extends State<SignIn> {
                   )),
               Center(child: Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
 
-                  child: Text("Forget Password?",style: TextStyle(color: Colors.grey),))),
+                  child: GestureDetector(
+                      onTap: (){
+
+                        Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => ForgotPassword()),
+                        );
+
+                      },
+
+                      child: Text("Forget Password?",style: TextStyle(color: Colors.grey),)))),
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: ElevatedButton(
@@ -124,7 +137,13 @@ class _SignInState extends State<SignIn> {
                       minimumSize: const Size(400, 40),
                       maximumSize: const Size(400, 40),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DelievryTo()),
+                      );
+
+                    },
                     child: Text("Sign in")),
               ),
               Center(child: Padding(
@@ -141,6 +160,9 @@ class _SignInState extends State<SignIn> {
                   SizedBox(width: 5,),
                   GestureDetector(onTap: (){
                     print(" Sign up");
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Signup()),
+                    );
 
                   },
                       child: Text("Create new account.",style: TextStyle(color: Colors.green),))
@@ -158,7 +180,10 @@ class _SignInState extends State<SignIn> {
                       primary: Color.fromRGBO(62, 89, 144, 1),
                       minimumSize: const Size(400, 40),
                       maximumSize: const Size(400, 40),
-                    ),  icon: Icon(Icons.facebook),  //icon data for elevated button
+                    ),     icon: FaIcon(
+                    FontAwesomeIcons.facebook
+
+                ),  //icon data for elevated button
                     label: Text("Connect with Facebook "),
                     onPressed: () {},
                     ),
@@ -171,7 +196,10 @@ class _SignInState extends State<SignIn> {
                       minimumSize: const Size(400, 40),
                       maximumSize: const Size(400, 40),
                     ),
-                  icon: Icon(Icons.facebook),  //icon data for elevated button
+                  icon: FaIcon(
+    FontAwesomeIcons.google
+
+    ),  //icon data for elevated button
                     label: Text("Connect with Google "),
                     onPressed: () {},
                   ),
@@ -179,7 +207,7 @@ class _SignInState extends State<SignIn> {
             ],
           ),
         ),
-      ),
+
     );
   }
 
